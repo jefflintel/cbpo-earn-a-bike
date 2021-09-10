@@ -10,14 +10,13 @@
 const express = require('express');
 const http = require('http');
 const morgan = require('morgan');
-const bodyParser = require('body-parser');
 const path = require('path');
 const mongoose = require('mongoose');
 
 //app configuration
 let app = express();
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({'extended ': true}));
+app.use(express.json());
+app.use(express.urlencoded({'extended ': true}));
 app.use(morgan('dev'));
 app.use(express.static(path.join(__dirname, '../dist/cbpo-earn-a-bike')));
 app.use('/', express.static(path.join(__dirname, '../dist/cbpo-earn-a-bike')));
@@ -28,7 +27,7 @@ app.use('/', express.static(path.join(__dirname, '../dist/cbpo-earn-a-bike')));
 const port = process.env.PORT || 3000;
 
 //database connection string
-const conn = 'mongodb+srv://test-user-1:test@cluster0.3rxnz.mongodb.net/myFirstDatabase?retryWrites=true&w=majority'
+const conn = 'mongodb+srv://cbpo-admin:bikes1BIKES@cluster0.3rxnz.mongodb.net/cbpo-dev-db?retryWrites=true&w=majority'
 
 //db connection string
 mongoose.connect(conn, {
@@ -40,3 +39,16 @@ mongoose.connect(conn, {
 }).catch(err => {
   console.log(`MongoDB Error: ${err.message}`);
 })
+
+//apis
+/*
+app.use('/api/security-questions', securityQuestionApi);
+app.use('/api/users', UsersApi);
+app.use('/api/session', SessionApi);
+app.use('/api/roles', RoleApi);
+*/
+
+//create and start server
+http.createServer(app).listen(port, function() {
+  console.log(`application started and listening on port: ${port}`);
+});

@@ -7,7 +7,9 @@
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
-    "e2e": "ng e2e"
+    "e2e": "ng e2e",
+    "server": "nodemon ./server/app.js",
+    "localhost": "ngbuild && node ./server/app.js"
   },
   "private": true,
   "dependencies": {

@@ -15,7 +15,7 @@ import {MatSidenavModule} from '@angular/material/sidenav';
   declarations: [
     AppComponent,
     AuthLayoutComponent,
-    BaseLayoutComponent
+    BaseLayoutComponent,
   ],
   imports: [
     BrowserModule,
